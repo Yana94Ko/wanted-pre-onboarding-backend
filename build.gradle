@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.1.4'
+    id 'io.spring.dependency-management' version '1.1.3'
+}
+
+group = 'com.wanted'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // 필수 기술요건 1 ) ORM 사용하여 구현 - JPA 의존성 추가
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.0.4'
+
+    // 필수 기술요건 2 ) RDBMS 사용 (SQLite, PostgreSQL,MySql 등) -  MySQL 의존성 추가
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // Validation 의존성 추가
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
